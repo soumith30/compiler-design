@@ -1,0 +1,39 @@
+LEX:
+%{
+#include <stdio.h>
+%}
+
+%%
+
+[0-9]           { printf("Input is a digit: %s\n", yytext); }
+.               { printf("Input is not a digit: %s\n", yytext); }
+
+%%
+
+int main(int argc, char **argv) {
+    yylex();
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}
+
+C:program;
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char input;
+
+    printf("Enter a character: ");
+    scanf("%c", &input);
+
+    if (isdigit(input)) {
+        printf("The character '%c' is a digit.\n", input);
+    } else {
+        printf("The character '%c' is not a digit.\n", input);
+    }
+
+    return 0;
+}
